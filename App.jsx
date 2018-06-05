@@ -25,7 +25,8 @@ class App extends React.Component {
             myArray: []
         }
 
-        this.setStateHandler = this.setStateHandler.bind(this);       
+        this.setStateHandler = this.setStateHandler.bind(this);    
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);   
     }
     setStateHandler() {
         var item = "Item ";
@@ -33,9 +34,14 @@ class App extends React.Component {
         myArray.push(item);
         this.setState({myArray: myArray});       
     }
+    forceUpdateHandler() {
+        this.forceUpdate();
+    }
     render() {
         return (
             <div>
+                <button onClick={this.forceUpdateHandler}>ForceUpdate</button>
+                <p>Random Number: {Math.random()}</p>
                 <button onClick={this.setStateHandler}>Click</button>
                 <div>{this.state.myArray}</div>
                 <div>Hello World!</div>
