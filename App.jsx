@@ -23,11 +23,16 @@ class App extends React.Component {
                     'age': 22
                 }
             ],
-            myArray: []
+            myArray: [],
+            myInput: "My Input"
         }
 
         this.setStateHandler = this.setStateHandler.bind(this); 
-        this.findDomNodeHandler = this.findDomNodeHandler.bind(this);             
+        this.findDomNodeHandler = this.findDomNodeHandler.bind(this); 
+        this.updateState = this.updateState.bind(this);            
+    }
+    updateState(elem) {
+        this.setState({myInput: elem.target.value})
     }
     findDomNodeHandler() {
         var headerEle = document.getElementById("header");
@@ -42,6 +47,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <input type="text" value={this.state.myInput} onChange={this.updateState}/>
+                <p>{this.state.myInput}</p>
                 <button onClick={this.findDomNodeHandler}>Find DOM node</button>
                 <button onClick={this.setStateHandler}>Click</button>
                 <div>{this.state.myArray}</div>
