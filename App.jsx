@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 class App extends React.Component {
@@ -25,8 +26,12 @@ class App extends React.Component {
             myArray: []
         }
 
-        this.setStateHandler = this.setStateHandler.bind(this);    
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);   
+        this.setStateHandler = this.setStateHandler.bind(this); 
+        this.findDomNodeHandler = this.findDomNodeHandler.bind(this);             
+    }
+    findDomNodeHandler() {
+        var headerEle = document.getElementById("header");
+        ReactDOM.findDOMNode(headerEle).style.color = 'red';
     }
     setStateHandler() {
         var item = "Item ";
@@ -34,18 +39,14 @@ class App extends React.Component {
         myArray.push(item);
         this.setState({myArray: myArray});       
     }
-    forceUpdateHandler() {
-        this.forceUpdate();
-    }
     render() {
         return (
             <div>
-                <button onClick={this.forceUpdateHandler}>ForceUpdate</button>
-                <p>Random Number: {Math.random()}</p>
+                <button onClick={this.findDomNodeHandler}>Find DOM node</button>
                 <button onClick={this.setStateHandler}>Click</button>
                 <div>{this.state.myArray}</div>
                 <div>Hello World!</div>
-                <div><Header /></div>
+                <div id="header"><Header /></div>
                 <div>{this.props.propName}</div>
                 <div>{this.props.propArray}</div>
                 <div>{this.props.propBool ? "true" : "false"}</div>
