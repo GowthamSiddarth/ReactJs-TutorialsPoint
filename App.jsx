@@ -27,12 +27,12 @@ class App extends React.Component {
             myInput: "My Input"
         }
 
-        this.setStateHandler = this.setStateHandler.bind(this); 
-        this.findDomNodeHandler = this.findDomNodeHandler.bind(this); 
-        this.updateState = this.updateState.bind(this);            
+        this.setStateHandler = this.setStateHandler.bind(this);
+        this.findDomNodeHandler = this.findDomNodeHandler.bind(this);
+        this.updateState = this.updateState.bind(this);
     }
     updateState(elem) {
-        this.setState({myInput: elem.target.value})
+        this.setState({ myInput: elem.target.value })
     }
     findDomNodeHandler() {
         var headerEle = document.getElementById("header");
@@ -42,13 +42,12 @@ class App extends React.Component {
         var item = "Item ";
         var myArray = this.state.myArray.slice();
         myArray.push(item);
-        this.setState({myArray: myArray});       
+        this.setState({ myArray: myArray });
     }
     render() {
         return (
             <div>
-                <input type="text" value={this.state.myInput} onChange={this.updateState}/>
-                <p>{this.state.myInput}</p>
+                <Content value={this.state.myInput} onChange={this.updateState} />
                 <button onClick={this.findDomNodeHandler}>Find DOM node</button>
                 <button onClick={this.setStateHandler}>Click</button>
                 <div>{this.state.myArray}</div>
@@ -75,8 +74,8 @@ App.propTypes = {
 
 App.defaultProps = {
     propName: 'Gowtham',
-    propArray: [1, 2, 3], 
-    propBool: true,   
+    propArray: [1, 2, 3],
+    propBool: true,
     propFunc: (a) => {
         return a;
     },
@@ -111,6 +110,17 @@ class TableRow extends React.Component {
                 <td>{this.props.data.name}</td>
                 <td>{this.props.data.age}</td>
             </tr>
+        );
+    }
+}
+
+class Content extends React.Component {
+    render() {
+        return (
+            <div>
+                <input type="text" value={this.props.value} onChange={this.props.onChange} />
+                <p>{this.props.value}</p>
+            </div>
         );
     }
 }
