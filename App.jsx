@@ -21,12 +21,23 @@ class App extends React.Component {
                     'name': 'Etc',
                     'age': 22
                 }
-            ]
+            ],
+            myArray: []
         }
+
+        this.setStateHandler = this.setStateHandler.bind(this);       
+    }
+    setStateHandler() {
+        var item = "Item ";
+        var myArray = this.state.myArray.slice();
+        myArray.push(item);
+        this.setState({myArray: myArray});       
     }
     render() {
         return (
             <div>
+                <button onClick={this.setStateHandler}>Click</button>
+                <div>{this.state.myArray}</div>
                 <div>Hello World!</div>
                 <div><Header /></div>
                 <div>{this.props.propName}</div>
