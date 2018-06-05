@@ -1,15 +1,17 @@
+var path = require('path');
+
 var config = {
     entry: './main.js',
     output: {
-        path: '/',
+        path: path.resolve(__dirname),
         filename: 'index.js'
     },
     devServer: {
         inline: true,
-        port: 8080
+        port: 9999
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
