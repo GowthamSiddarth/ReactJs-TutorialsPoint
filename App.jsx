@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
     constructor() {
@@ -28,16 +29,39 @@ class App extends React.Component {
             <div>
                 <div>Hello World!</div>
                 <div><Header /></div>
+                <div>{this.props.propName}</div>
+                <div>{this.props.propArray}</div>
+                <div>{this.props.propBool ? "true" : "false"}</div>
+                <div>{this.props.propFunc([2, 5])}</div>
+                <div>{this.props.propNum}</div>
                 <div><Table data={this.state.data} /></div>
             </div>
         );
     }
 }
 
+App.propTypes = {
+    propName: PropTypes.string,
+    propArray: PropTypes.array.isRequired,
+    propBool: PropTypes.bool.isRequired,
+    propFunc: PropTypes.func,
+    propNum: PropTypes.number
+}
+
+App.defaultProps = {
+    propName: 'Gowtham',
+    propArray: [1, 2, 3], 
+    propBool: true,   
+    propFunc: (a) => {
+        return a;
+    },
+    propNum: 3
+}
+
 class Header extends React.Component {
     render() {
         return (
-            <div>Header</div>
+            <h3>Header</h3>
         )
     }
 }
