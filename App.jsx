@@ -24,12 +24,22 @@ class App extends React.Component {
                 }
             ],
             myArray: [],
-            myInput: "My Input"
+            myInput: "My Input",
+            myInput2: "My Input2"
         }
 
         this.setStateHandler = this.setStateHandler.bind(this);
         this.findDomNodeHandler = this.findDomNodeHandler.bind(this);
         this.updateState = this.updateState.bind(this);
+        this.clearInput = this.clearInput.bind(this);
+        this.updateInput2 = this.updateInput2.bind(this);
+    }
+    updateInput2(elem) {
+        this.setState({myInput2: this.myInput2});
+    }
+    clearInput(elem) {
+        this.setState({myInput2: ''});
+        ReactDOM.findDOMNode(this.refs.myInput2).focus();
     }
     updateState(elem) {
         this.setState({ myInput: elem.target.value })
@@ -47,6 +57,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <input type="text" ref="myInput2" value={this.state.myInput2} onChange={this.updateInput2} />
+                <button onClick={this.clearInput}>Clear</button>
                 <Content value={this.state.myInput} onChange={this.updateState} />
                 <button onClick={this.findDomNodeHandler}>Find DOM node</button>
                 <button onClick={this.setStateHandler}>Click</button>
