@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './Home';
+import Login from './Login';
 
 class App extends React.Component {
     constructor() {
@@ -57,6 +60,19 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <Router>
+                    <div>
+                        <h3>React Routing</h3>
+                        <ul>
+                            <li><Link to={'/'}>Home</Link></li>
+                            <li><Link to={'/login'}>Login</Link></li>
+                        </ul>
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <Route exact path='/login' component={Login} />
+                        </Switch>
+                    </div>
+                </Router>
                 <input type="text" ref="myInput2" value={this.state.myInput2} onChange={this.updateInput2} />
                 <button onClick={this.clearInput}>Clear</button>
                 <Content value={this.state.myInput} onChange={this.updateState} />
